@@ -3,6 +3,7 @@
 import { FC } from 'react'
 import { useModalAuth } from '@/hooks/useModalAuth'
 import { Modal } from '@/ui/Modal'
+import UserAuthForm from '../UserAuthForm'
 
 interface SignInProps {
   
@@ -18,11 +19,7 @@ const SignIn: FC<SignInProps> = ({}) => {
     isOpen={authModal.isOpen}
     onClose={authModal.onClose}
     >
-      <div className='container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]'>
-          <div className="flex flex-col space-y-2 text-center">
-              <p className=''></p>
-          </div>
-      </div>
+      <UserAuthForm />
     </Modal>
   )
 }
