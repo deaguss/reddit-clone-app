@@ -1,14 +1,11 @@
-"use client"
-
 import Link from "next/link"
-import { Icons } from "./Icons"
-import { Button, buttonVariants } from "@/ui/Button"
-import { cn } from "@/lib/utils"
-import { useModalAuth } from "@/hooks/useModalAuth"
+
+import { Icons } from "@/components/Icons"
+import { getAuthSession } from "@/lib/auth"
+import SignInButton from "@/components/SignInButton"
 
 const Navbar = async() => {
-  const onOpen = useModalAuth((state) => state.onOpen)
-
+  const session = await getAuthSession()
   
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
@@ -21,8 +18,13 @@ const Navbar = async() => {
             </Link>
 
             {/* search bar */}
+            
+            {session ? (
+              <p>u are logged {session.user.name}</p>
+            ): (
+              <SignInButton />
+            )}
 
-            <Button onClick={onOpen} className={cn(buttonVariants(), "rounded-full bg-accent hover:bg-accent-foreground")}>Log In</Button>
         </div>
     </div>
   )
