@@ -1,8 +1,13 @@
-import { LucideProps, MessageSquare, User } from "lucide-react";
+import { LucideProps, MessageSquare, User, Settings, User2, View, MessageCircle, LogOut } from "lucide-react";
 import Image from "next/image";
 
 export const Icons = {
     user: User,
+    setting: Settings,
+    profile: User2,
+    view: View,
+    message: MessageCircle,
+    logOut: LogOut, 
     logoMobile: (props: LucideProps) => (
         <Image src={'/Reddit-mobile-logo.png'} width={40} height={40} alt="" className="h-auto w-8 sm:w-6 md:hidden mx-auto"/>
     ),

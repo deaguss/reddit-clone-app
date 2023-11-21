@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/Toaster'
 import { getAuthSession } from '@/lib/auth'
 import { cn } from '@/lib/utils'
 import { ModalProvider } from '@/providers/ModalProvider'
+import QueryProviders from '@/providers/QueryProvider'
 import { ProviderSession } from '@/providers/SessionProvider'
 import '@/styles/globals.css'
 
@@ -29,15 +30,17 @@ export default async function RootLayout({
   return (
     <html lang='en' className={cn("bg-white text-slate-900 antialiased light", inter.className)}>
       <body className='min-h-screen pt-12 bg-slate-50 '>
-        <ProviderSession session={session}>
-        {/* @ts-expect-error Server Component */}
-          <Navbar />
-          <ModalProvider />
-          <div className="container max-w-7xl mx-auto h-full pt-12">
-            {children}
-          </div>
-          <Toaster />
-        </ProviderSession>
+        <QueryProviders>  
+          <ProviderSession session={session}>
+          {/* @ts-expect-error Server Component */}
+            <Navbar />
+            <ModalProvider />
+            <div className="container max-w-7xl mx-auto h-full pt-12">
+              {children}
+            </div>
+            <Toaster />
+          </ProviderSession>
+        </QueryProviders>
         </body>
     </html>
   )
