@@ -1,8 +1,11 @@
 import { buttonVariants } from '@/components/ui/Button'
 import { toast } from '@/hooks/useToast'
 import Link from 'next/link'
+import { useModalAuth } from './useModalAuth'
 
 export const useCustomToasts = () => {
+  const onOpen = useModalAuth((state) => state.onOpen)
+
   const loginToast = () => {
     const { dismiss } = toast({
       title: 'Login required.',
@@ -10,8 +13,12 @@ export const useCustomToasts = () => {
       variant: 'destructive',
       action: (
         <Link
-          onClick={() => dismiss()}
-          href='/sign-in'
+          onClick={() => {
+            dismiss()
+            onOpen()
+            }
+          }
+          href='/r/create'
           className={buttonVariants({ variant: 'outline' })}>
           Login
         </Link>

@@ -45,17 +45,19 @@ const Page = () => {
         if (err.response?.status === 401) {
           return loginToast()
         }
+
+        toast({
+          title: 'There was an error.',
+          description: `Could not create subreddit. ${err.message}`,
+          variant: 'destructive',
+        })
       }
 
-      toast({
-        title: 'There was an error.',
-        description: 'Could not create subreddit.',
-        variant: 'destructive',
-      })
+
     },
-    // onSuccess: (data) => {
-    //   router.push(`/r/${data}`)
-    // },
+    onSuccess: (data) => {
+      router.push(`/r/${data}`)
+    },
   })
 
   return (

@@ -14,6 +14,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { name } = SubredditValidator.parse(body)
 
+
     // check if subreddit already exists
     const subredditExists = await db.subreddit.findFirst({
       where: {
