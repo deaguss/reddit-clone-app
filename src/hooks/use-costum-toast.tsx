@@ -2,9 +2,11 @@ import { buttonVariants } from '@/components/ui/Button'
 import { toast } from '@/hooks/useToast'
 import Link from 'next/link'
 import { useModalAuth } from './useModalAuth'
+import { usePathname } from 'next/navigation'
 
 export const useCustomToasts = () => {
   const onOpen = useModalAuth((state) => state.onOpen)
+  const pathname = usePathname()
 
   const loginToast = () => {
     const { dismiss } = toast({
@@ -18,7 +20,7 @@ export const useCustomToasts = () => {
             onOpen()
             }
           }
-          href='/r/create'
+          href={pathname}
           className={buttonVariants({ variant: 'outline' })}>
           Login
         </Link>
