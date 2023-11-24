@@ -14,23 +14,24 @@ const UserAuthForm: FC<UserAuthFormProps> = ({
     className, ...props
 }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const {toast} = useToast()
+    const { toast } = useToast()
 
-    const loginWithGoogle = async() => {
-        setIsLoading(true)
-
+    const loginWithGoogle = async () => {
         try {
-            await signIn('google')
+            setIsLoading(true);
+            await signIn('google');
         } catch (error) {
+            console.error("Error logging in with Google:", error);
             toast({
                 title: "There was a problem.",
                 description: "There was an error logging in with Google",
                 variant: "destructive"
-            })
+            });
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
-    }
+    };
+    
 
   return (
         <div className={cn('flex justify-center', className)} {...props}>
