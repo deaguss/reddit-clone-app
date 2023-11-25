@@ -13,7 +13,7 @@ export default function Home() {
     const { data: session } = useSession()
 
     useEffect(() => {
-      if(!isOpen && !session) onOpen()
+      if(!isOpen && !session?.user) onOpen()
     }, [onOpen, session])
 
   return (

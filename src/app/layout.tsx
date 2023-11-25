@@ -4,7 +4,6 @@ import { getAuthSession } from '@/lib/auth'
 import { cn } from '@/lib/utils'
 import { ModalProvider } from '@/providers/ModalProvider'
 import QueryProviders from '@/providers/QueryProvider'
-import { ProviderSession } from '@/providers/SessionProvider'
 import '@/styles/globals.css'
 
 import { Inter } from "next/font/google"
@@ -26,12 +25,11 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getAuthSession()
-
+  
   return (
     <html lang='en' className={cn("bg-white text-slate-900 antialiased light", inter.className)}>
       <body className='min-h-screen pt-12 bg-slate-50 '>
-        <QueryProviders>  
-          <ProviderSession session={session}>
+        <QueryProviders session={session}>  
           {/* @ts-expect-error Server Component */}
             <Navbar />
             <ModalProvider />
@@ -39,7 +37,6 @@ export default async function RootLayout({
               {children}
             </div>
             <Toaster />
-          </ProviderSession>
         </QueryProviders>
         </body>
     </html>
